@@ -147,7 +147,7 @@ p {
 
 .line-icon {
   flex: none;
-  color: color-mix(in srgb, var(--accent) 55%, white);
+  color: #ffffff;
 }
 
 .title {

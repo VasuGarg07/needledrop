@@ -6,9 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "npm run build && electron-builder --win"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^6.0.2",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-electron": "^1.2.0",
     "@fontsource-variable/dm-sans": "^5.3.0",
     "@fontsource-variable/fraunces": "^5.3.0",
     "fast-average-color": "^9.6.0",
@@ -17,14 +26,35 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
-  "devDependencies": {
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^6.0.2",
-    "electron": "^45.4.1",
-    "typescript": "~6.0.3",
-    "vite": "^8.0.16",
-    "vite-plugin-electron": "^1.2.0"
-  },
-  "main": "dist-electron/main.js"
+  "main": "dist-electron/main.js",
+  "description": "A tiny always-on-top vinyl widget that shows what you are playing",
+  "author": "Vasu Garg",
+  "build": {
+    "appId": "com.vasu.needledrop",
+    "productName": "Needledrop",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "electron/media.ps1",
+        "to": "media.ps1"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "artifactName": "Needledrop Setup.${ext}",
+      "uninstallDisplayName": "Needledrop"
+    }
+  }
 }

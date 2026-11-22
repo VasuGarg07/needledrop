@@ -74,9 +74,13 @@ async function handleSpotifyState(state: NowPlaying | null) {
   }
 }
 
+const mediaScriptPath = app.isPackaged
+  ? path.join(process.resourcesPath, "media.ps1")
+  : path.join(currentFolder, "../electron/media.ps1");
+
 const mediaReader = spawn(
   "powershell.exe",
-  ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", path.join(currentFolder, "../electron/media.ps1")],
+  ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", mediaScriptPath],
   { windowsHide: true },
 );
 
