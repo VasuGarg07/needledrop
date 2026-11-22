@@ -5,6 +5,7 @@ import { Music, Pause, Play, SkipBack, SkipForward, X } from "lucide-react";
 import "@fontsource-variable/dm-sans";
 import "@fontsource-variable/fraunces/opsz-italic.css";
 import { DoubleNoteIcon, StudioMicIcon } from "./icons";
+import { Spectrum } from "./Spectrum";
 import type { NowPlaying } from "./types";
 import "./App.css";
 
@@ -67,6 +68,8 @@ function App() {
           />
         )}
       </AnimatePresence>
+
+      <Spectrum />
 
       <section className="deck">
         <motion.div

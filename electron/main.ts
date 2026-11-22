@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, screen } from "electron";
+import { app, BrowserWindow, desktopCapturer, ipcMain, screen, session } from "electron";
 import { spawn } from "node:child_process";
 import path from "node:path";
 import readline from "node:readline";
@@ -122,7 +122,14 @@ ipcMain.on("media-control", (_event, action: MediaAction) => {
   mediaReader.stdin.write(`${action}\n`);
 });
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  session.defaultSession.setDisplayMediaRequestHandler((_request, callback) => {
+    desktopCapturer.getSources({ types: ["screen"] }).then((sources) => {
+      callback({ video: sources[0], audio: "loopback" });
+    });
+  });
+  createWindow();
+});
 
 app.on("window-all-closed", () => {
   mediaReader.kill();
