@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useAnimationFrame, useMotionValue } from "moti
 import { FastAverageColor } from "fast-average-color";
 import { Music, Pause, Play, SkipBack, SkipForward, X } from "lucide-react";
 import "@fontsource-variable/dm-sans";
-import "@fontsource-variable/fraunces/opsz-italic.css";
+import "@fontsource/pt-serif/400.css";
 import { DoubleNoteIcon, StudioMicIcon } from "./icons";
 import { Spectrum } from "./Spectrum";
 import type { NowPlaying } from "./types";
